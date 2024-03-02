@@ -76,7 +76,7 @@ export function createHttpClient(): $Fetch {
 
             const authToken =
                 Capacitor.isNativePlatform() &&
-                (await Preferences.get({ key: 'token' }).value);
+                (await Preferences.get({ key: 'token' })).value;
 
             options.headers = {
                 Accept: 'application/json',
