@@ -74,12 +74,14 @@ export function createHttpClient(): $Fetch {
         async onRequest({ options }): Promise<void> {
             const method = options.method?.toLowerCase() ?? 'get';
 
-            const authToken = Capacitor.isNativePlatform() && await Preferences.get({ key: 'token' }).value;
+            const authToken =
+                Capacitor.isNativePlatform() &&
+                (await Preferences.get({ key: 'token' }).value);
 
             options.headers = {
                 Accept: 'application/json',
                 ...options.headers,
-                ...(authToken && { 'Authorization': `Bearer ${authToken}` }),
+                ...(authToken && { Authorization: `Bearer ${authToken}` }),
             };
 
             // https://laravel.com/docs/10.x/routing#form-method-spoofing

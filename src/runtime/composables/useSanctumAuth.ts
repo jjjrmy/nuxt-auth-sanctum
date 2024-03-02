@@ -54,7 +54,9 @@ export const useSanctumAuth = <T>(): SanctumAuth<T> => {
             await nuxtApp.runWithContext(() => navigateTo(redirect));
         }
 
-        const loginEndpoint = Capacitor.isNativePlatform() ? options.endpoints.loginMobile : options.endpoints.login;
+        const loginEndpoint = Capacitor.isNativePlatform()
+            ? options.endpoints.loginMobile
+            : options.endpoints.login;
 
         const loginResponse = await client(loginEndpoint, {
             method: 'post',
@@ -93,7 +95,9 @@ export const useSanctumAuth = <T>(): SanctumAuth<T> => {
             throw new Error('User is not authenticated');
         }
 
-        const logoutEndpoint = Capacitor.isNativePlatform() ? options.endpoints.logoutMobile : options.endpoints.logout;
+        const logoutEndpoint = Capacitor.isNativePlatform()
+            ? options.endpoints.logoutMobile
+            : options.endpoints.logout;
 
         await client(logoutEndpoint, { method: 'post' });
 
